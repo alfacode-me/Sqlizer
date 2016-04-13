@@ -1,0 +1,10 @@
+name                            : SQLizer
+author                          : Surya Handokho Putra
+version                         : 1.23
+secret                          : surya23d04m96y
+
+mail.smtp                       : smtp.surya.pw
+mail.smtp.options               : {"secure":false,"port":25,"user":"","password":"","timeout":10000}
+mail.address.from               : email@surya.pw
+mail.address.reply              : email@surya.pw
+mail.address.bcc                :

@@ -1,0 +1,130 @@
+@{title('SQLizer')}
+@{import('sqlizer.js')}
+
+<style media="screen">
+    .pageSetup {
+        margin: 30px 50px 25px 50px;
+    }
+    tr > th {
+        padding: 12px 10px;
+    }
+    #tabel {
+        overflow: auto;
+        overflow-x: auto;
+        overflow-y: auto;
+        height: 550px;
+    }
+    @media only screen and (max-width: 620px) {
+        .pageSetup {
+            margin: 10px;
+        }
+    }
+</style>
+<div id="sqlizer" class="pageSetup">
+    <div class="ui centered stackable grid">
+        <div class="five wide column">
+            <div class="ui icon floating message">
+                <i class="announcement icon"></i>
+                <div class="content">
+                    <div class="header">
+                        Selamat datang di SQLizer ...
+                    </div>
+                    <p>Silahkan menggunakan SQLizer dengan bijak.<br>Untuk yang ingin memberikan donasi Bitcoin : <b>1PYPw2h8skwFvQtJXT5kqgTVW3Q9YZUTKQ</b><br>Terima Kasih.</p>
+                </div>
+            </div>
+            <div class="ui raised segments">
+                <div class="ui violet inverted segment">
+                    SQL SINTAKS
+                </div>
+                <div class="ui segment">
+                    <div class="ui dimmer">
+                        <div class="ui indeterminate text loader">Tunggu Sebentar...</div>
+                    </div>
+                    <div class="ui form">
+                        <div class="field">
+                            <label>Host</label>
+                            <input v-model="sintaks.host" type="text" placeholder="Host">
+                        </div>
+                        <div class="field">
+                            <label>User</label>
+                            <input v-model="sintaks.user" type="text" placeholder="User">
+                        </div>
+                        <div class="field">
+                            <label>Password</label>
+                            <input v-model="sintaks.password" type="password" placeholder="Password">
+                        </div>
+                        <div class="field">
+                            <label>Database</label>
+                            <input v-model="sintaks.database" type="text" placeholder="Database">
+                        </div>
+                        <div class="field">
+                            <label>SQL Sintaks</label>
+                            <textarea v-model="sintaks.sintaks" rows="4" placeholder="Tuliskan Sintaks SQL disini..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui secondary segment">
+                    <div @click="funcProses()" class="ui fluid button violet">PROSES</div>
+                </div>
+            </div>
+            <div class="ui raised segments">
+                <div class="ui violet inverted segment">
+                    INFORMASI
+                </div>
+                <div class="ui secondary segment">
+                    <table class="ui violet inverted striped table">
+                        <tbody>
+                            <tr>
+                                <td>Host</td>
+                                <td>{{sintaks.host || '---'}}</td>
+                            </tr>
+                            <tr>
+                                <td>User</td>
+                                <td>{{sintaks.user || '---'}}</td>
+                            </tr>
+                            <tr>
+                                <td>Password</td>
+                                <td v-if="sintaks.password">******</td>
+                                <td v-else>---</td>
+                            </tr>
+                            <tr>
+                                <td>Database</td>
+                                <td>{{sintaks.database || '---'}}</td>
+                            </tr>
+                            <tr>
+                                <td>Data Terseleksi</td>
+                                <td>{{dtJson.length || '---'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="eleven wide column">
+            <div class="ui raised segments">
+                <div class="ui green inverted segment">
+                    HASIL
+                </div>
+                <div class="ui segment">
+                    <div class="ui dimmer">
+                        <div class="ui indeterminate large text loader">Tunggu Sebentar...</div>
+                    </div>
+                    <div class="ui form">
+                        <div class="field">
+                            <label>Data RAW</label>
+                            <textarea readonly="" v-model="dtRaw" rows="10"></textarea>
+                        </div>
+                        <div class="field">
+                            <label>Data Tabel</label>
+                            <div id="tabel"></div>
+                        </div>
+                    </div>
+                    <hr v-if="dtJson">
+                    <div id="dlJSON"></div>
+                    <div id="dlXML"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@{view('footer')}
