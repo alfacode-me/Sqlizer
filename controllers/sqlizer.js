@@ -1,5 +1,5 @@
 exports.install = function() {
-	F.route('/sqlizer', viewSqlizer);
+	F.route('/', viewSqlizer);
 	F.route('/api/sqlizer/proses', funcProses, ['post']);
 };
 
